@@ -11,12 +11,29 @@ Standalone lead-generation website for TCG Magnet.
 
 ## Setup
 
-1. Copy `.env.example` to `.env.local`.
-2. Create a Supabase project.
-3. Run `supabase/migrations/20260727_create_tcg_magnet_leads.sql`.
-4. Add the same environment variables in Vercel.
-5. Add ops user emails to `NEXT_PUBLIC_OPS_ALLOWLIST`.
-6. Configure Postmark sender and `TCG_MAGNET_LEAD_NOTIFY_EMAIL`.
+1. Create a Supabase project.
+2. Run `supabase/migrations/20260727_create_tcg_magnet_leads.sql`.
+3. Add the required environment variables in Vercel and local `.env.local`.
+4. Add ops user emails to `NEXT_PUBLIC_OPS_ALLOWLIST`.
+5. Configure Postmark sender and `TCG_MAGNET_LEAD_NOTIFY_EMAIL`.
+
+## Required Environment Variables
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+POSTMARK_SERVER_TOKEN=
+POSTMARK_FROM_EMAIL=
+POSTMARK_REPLY_TO=
+TCG_MAGNET_LEAD_NOTIFY_EMAIL=
+TCG_MAGNET_INTERNAL_BASE_URL=
+NEXT_PUBLIC_SITE_URL=
+NEXT_PUBLIC_OPS_ALLOWLIST=
+OPS_ADMIN_EMAILS=
+NEXT_PUBLIC_GOOGLE_ADS_ID=
+NEXT_PUBLIC_TCG_GOOGLE_ADS_SEND_TO=
+```
 
 ## Development
 
