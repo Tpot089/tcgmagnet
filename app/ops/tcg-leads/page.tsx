@@ -129,6 +129,7 @@ export default async function TcgLeadsPage({ searchParams }: { searchParams: Pro
                   <div className="grid gap-3 sm:grid-cols-3">
                     {signedPhotos.map((photo) => (
                       <a key={photo.path} href={photo.url} target="_blank" rel="noreferrer" className="overflow-hidden rounded-md border border-slate-200 bg-slate-50">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={photo.url} alt={photo.originalName} className="h-36 w-full object-cover" />
                         <div className="truncate p-2 text-xs font-semibold">{photo.originalName}</div>
                       </a>

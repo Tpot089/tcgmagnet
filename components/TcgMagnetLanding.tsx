@@ -1,10 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Camera, Check, ChevronRight, Loader2, ShieldCheck, Trash2, Upload } from "lucide-react";
 import {
-  TCG_CARD_GAMES,
   TCG_COLLECTION_TYPES,
   TCG_MAX_PHOTO_BYTES,
   TCG_MAX_PHOTO_COUNT,
@@ -35,6 +35,44 @@ type Attribution = {
 };
 
 const provinces = ["AB", "BC", "MB", "NB", "NL", "NS", "NT", "NU", "ON", "PE", "QC", "SK", "YT"];
+
+const gameOptions = [
+  {
+    value: "Pokemon",
+    label: "Pokémon",
+    image: "/images/games/pokemon-pack.webp",
+  },
+  {
+    value: "Magic: The Gathering",
+    label: "Magic: The Gathering",
+    image: "/images/games/magic-pack.webp",
+  },
+  {
+    value: "Yu-Gi-Oh!",
+    label: "Yu-Gi-Oh!",
+    image: "/images/games/yugioh-pack.webp",
+  },
+  {
+    value: "One Piece",
+    label: "One Piece",
+    image: "/images/games/one-piece-pack.webp",
+  },
+  {
+    value: "Dragon Ball Super",
+    label: "Dragon Ball Super",
+    image: "/images/games/dragon-ball-pack.webp",
+  },
+  {
+    value: "Sports cards",
+    label: "Sports Cards",
+    image: "/images/games/sports-pack.webp",
+  },
+  {
+    value: "Other",
+    label: "Other",
+    image: "/images/games/other-pack.webp",
+  },
+] as const;
 
 const blankAttribution: Attribution = {
   source: null,
@@ -303,9 +341,12 @@ export default function TcgMagnetLanding() {
           </div>
           <div className="relative">
             <div className="absolute inset-8 rounded-full bg-[#2b8dff]/25 blur-3xl" />
-            <img
+            <Image
               src="/tcg-magnet-logo.png"
               alt="TCG Magnet"
+              width={620}
+              height={620}
+              priority
               className="relative mx-auto w-full max-w-[620px] drop-shadow-[0_28px_60px_rgba(0,0,0,0.72)]"
             />
           </div>
@@ -357,7 +398,13 @@ export default function TcgMagnetLanding() {
       <section id="submit-collection" className="px-4 py-16 sm:px-6 lg:px-8">
         <form onSubmit={handleSubmit} className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <img src="/tcg-magnet-logo.png" alt="TCG Magnet" className="mb-6 w-40 drop-shadow-[0_12px_30px_rgba(43,141,255,0.28)]" />
+            <Image
+              src="/tcg-magnet-logo.png"
+              alt="TCG Magnet"
+              width={160}
+              height={160}
+              className="mb-6 w-40 drop-shadow-[0_12px_30px_rgba(43,141,255,0.28)]"
+            />
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#9fd4ff]">Collection Submission</p>
             <h2 className="mt-3 text-3xl font-black text-white">Sell Your Trading Card Collection</h2>
             <p className="mt-4 leading-7 text-slate-300">
@@ -386,7 +433,7 @@ export default function TcgMagnetLanding() {
             </FormSection>
 
             <FormSection title="Collection information">
-              <ChoiceGroup label="Card games included" values={TCG_CARD_GAMES} selected={form.card_games} onToggle={(value) => toggleList("card_games", value)} />
+              <GameChoiceGroup selected={form.card_games} onToggle={(value) => toggleList("card_games", value)} />
               <ChoiceGroup label="Collection type" values={TCG_COLLECTION_TYPES} selected={form.collection_types} onToggle={(value) => toggleList("collection_types", value)} />
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field label="Approximate number of cards" id="approximate_card_count" required><input className={inputClass} id="approximate_card_count" name="approximate_card_count" value={form.approximate_card_count} onChange={updateText} placeholder="e.g. 2,000 cards" /></Field>
@@ -425,6 +472,7 @@ export default function TcgMagnetLanding() {
                 <div className="mt-4 grid gap-3 sm:grid-cols-3">
                   {photos.map((photo) => (
                     <div key={photo.id} className="overflow-hidden rounded-md border border-slate-200 bg-slate-50">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={photo.url} alt={`Selected upload ${photo.file.name}`} className="h-32 w-full object-cover" />
                       <div className="flex items-center justify-between gap-2 p-2 text-xs">
                         <span className="truncate">{photo.file.name}</span>
@@ -507,6 +555,52 @@ function ChoiceGroup({ label, values, selected, onToggle }: { label: string; val
           return (
             <button key={value} type="button" onClick={() => onToggle(value)} className={`min-h-11 rounded-md border px-3 text-left text-sm font-semibold ${active ? "border-teal-500 bg-teal-50 text-slate-950" : "border-slate-200 bg-white text-slate-700"}`}>
               {value}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function GameChoiceGroup({ selected, onToggle }: { selected: string[]; onToggle: (value: string) => void }) {
+  return (
+    <div>
+      <div className="mb-3 text-sm font-bold text-slate-800">Card games included</div>
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-4">
+        {gameOptions.map((option) => {
+          const active = selected.includes(option.value);
+          return (
+            <button
+              key={option.value}
+              type="button"
+              aria-label={`${active ? "Remove" : "Select"} ${option.label}`}
+              aria-pressed={active}
+              onClick={() => onToggle(option.value)}
+              className={`group relative flex min-h-[230px] flex-col overflow-hidden rounded-lg border bg-[#05080d] p-2 text-left shadow-sm transition duration-150 hover:-translate-y-0.5 hover:scale-[1.015] focus:outline-none focus:ring-4 focus:ring-[#66b7ff]/50 sm:min-h-[270px] ${
+                active
+                  ? "border-[#2b8dff] shadow-[0_0_26px_rgba(43,141,255,0.42)]"
+                  : "border-slate-300/70 hover:border-[#6fbaff]/70"
+              }`}
+            >
+              {active ? (
+                <span className="absolute right-2 top-2 z-10 flex h-7 w-7 items-center justify-center rounded-full border border-white/70 bg-[#2b8dff] text-white shadow-lg">
+                  <Check size={16} strokeWidth={3} />
+                </span>
+              ) : null}
+              <span className="relative flex flex-1 items-center justify-center overflow-hidden rounded-md bg-black">
+                <Image
+                  src={option.image}
+                  alt=""
+                  width={420}
+                  height={590}
+                  sizes="(min-width: 1280px) 180px, (min-width: 768px) 30vw, 44vw"
+                  className="h-full w-full object-contain transition duration-150 group-hover:scale-[1.02]"
+                />
+              </span>
+              <span className="mt-2 flex min-h-10 items-center justify-center rounded-md border border-white/10 bg-[#07111d] px-2 text-center text-xs font-black uppercase tracking-wide text-white sm:text-sm">
+                {option.label}
+              </span>
             </button>
           );
         })}
