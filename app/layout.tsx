@@ -16,6 +16,14 @@ export const metadata: Metadata = {
     title: "TCG Magnet | Sell Your Trading Card Collection",
     description:
       "Submit photos and collection details online to receive a direct offer for trading-card collections.",
+    images: ["/tcg-magnet-logo.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TCG Magnet | Sell Your Trading Card Collection",
+    description:
+      "Submit photos and collection details online to receive a direct offer for trading-card collections.",
+    images: ["/tcg-magnet-logo.png"],
   },
 };
 

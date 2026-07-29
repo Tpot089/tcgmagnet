@@ -276,12 +276,16 @@ export default function TcgMagnetLanding() {
   }
 
   return (
-    <div className="w-full bg-[#0b0f14] text-slate-100">
-      <section className="relative overflow-hidden border-b border-white/10 px-4 py-16 sm:px-6 lg:px-8">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(68,222,190,0.18),transparent_34%),linear-gradient(135deg,#0b0f14_0%,#171c23_55%,#0b0f14_100%)]" />
-        <div className="relative mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+    <div className="w-full bg-[#030507] text-slate-100">
+      <section className="relative overflow-hidden border-b border-[#1b5fad]/40 px-4 py-12 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_18%,rgba(46,141,255,0.32),transparent_32%),radial-gradient(circle_at_18%_76%,rgba(211,33,38,0.18),transparent_26%),linear-gradient(135deg,#030507_0%,#0b1119_48%,#030507_100%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#68b8ff] to-transparent" />
+        <div className="relative mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div>
-            <p className="mb-4 text-sm font-bold uppercase tracking-[0.24em] text-teal-300">TCG Magnet</p>
+            <div className="mb-5 inline-flex items-center gap-3 rounded-md border border-[#2d7ed0]/50 bg-black/45 px-3 py-2 shadow-[0_0_28px_rgba(45,126,208,0.22)]">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#d9272f]" />
+              <span className="text-xs font-black uppercase tracking-[0.24em] text-[#9fd4ff]">Buy · Trade · Consign</span>
+            </div>
             <h1 className="max-w-3xl text-4xl font-black leading-tight text-white sm:text-6xl">
               Turn Your Trading Card Collection Into Cash
             </h1>
@@ -289,7 +293,7 @@ export default function TcgMagnetLanding() {
               Submit photos and information about your trading-card collection to receive a direct offer from TCG Magnet.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a href="#submit-collection" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-teal-300 px-5 font-bold text-slate-950 transition hover:bg-teal-200">
+              <a href="#submit-collection" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#2b8dff] px-5 font-black text-white shadow-[0_0_28px_rgba(43,141,255,0.42)] transition hover:bg-[#66b7ff]">
                 Submit Your Collection <ChevronRight size={18} />
               </a>
               <p className="max-w-xl text-sm leading-6 text-slate-300">
@@ -297,22 +301,22 @@ export default function TcgMagnetLanding() {
               </p>
             </div>
           </div>
-          <div className="grid gap-4 rounded-lg border border-white/12 bg-white/[0.04] p-5 shadow-2xl shadow-black/30">
-            {["Graded cards", "Sealed products", "Binders", "High-value singles"].map((label, index) => (
-              <div key={label} className="flex min-h-20 items-center justify-between rounded-md border border-white/10 bg-slate-950/70 px-5">
-                <span className="font-bold">{label}</span>
-                <span className="text-sm text-teal-200">0{index + 1}</span>
-              </div>
-            ))}
+          <div className="relative">
+            <div className="absolute inset-8 rounded-full bg-[#2b8dff]/25 blur-3xl" />
+            <img
+              src="/tcg-magnet-logo.png"
+              alt="TCG Magnet"
+              className="relative mx-auto w-full max-w-[620px] drop-shadow-[0_28px_60px_rgba(0,0,0,0.72)]"
+            />
           </div>
         </div>
       </section>
 
-      <section className="px-4 py-14 sm:px-6 lg:px-8">
+      <section className="bg-[#070a0e] px-4 py-14 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-3">
           {["Submit your collection and upload photos.", "We review the cards and contact you.", "We negotiate an offer and arrange the transaction."].map((step, index) => (
-            <div key={step} className="rounded-lg border border-white/10 bg-white/[0.04] p-6">
-              <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-md bg-teal-300 font-black text-slate-950">{index + 1}</div>
+            <div key={step} className="rounded-lg border border-[#244f83]/70 bg-[#0c1118] p-6 shadow-[0_18px_44px_rgba(0,0,0,0.22)]">
+              <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-md border border-[#70bcff]/60 bg-[#10243a] font-black text-[#9fd4ff]">{index + 1}</div>
               <h2 className="text-xl font-black">How It Works</h2>
               <p className="mt-3 text-slate-300">{step}</p>
             </div>
@@ -320,7 +324,7 @@ export default function TcgMagnetLanding() {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-slate-950 px-4 py-14 sm:px-6 lg:px-8">
+      <section className="border-y border-[#1b5fad]/40 bg-[#020304] px-4 py-14 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2">
           <InfoBlock
             title="What We Buy"
@@ -353,18 +357,19 @@ export default function TcgMagnetLanding() {
       <section id="submit-collection" className="px-4 py-16 sm:px-6 lg:px-8">
         <form onSubmit={handleSubmit} className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-300">Collection Submission</p>
+            <img src="/tcg-magnet-logo.png" alt="TCG Magnet" className="mb-6 w-40 drop-shadow-[0_12px_30px_rgba(43,141,255,0.28)]" />
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#9fd4ff]">Collection Submission</p>
             <h2 className="mt-3 text-3xl font-black text-white">Sell Your Trading Card Collection</h2>
             <p className="mt-4 leading-7 text-slate-300">
               Upload clear photos of binder pages, valuable cards, graded labels, sealed products, and wide shots showing the whole collection.
             </p>
-            <div className="mt-6 rounded-lg border border-teal-300/30 bg-teal-300/10 p-4 text-sm leading-6 text-teal-50">
+            <div className="mt-6 rounded-lg border border-[#2b8dff]/45 bg-[#07192b] p-4 text-sm leading-6 text-[#d9eeff] shadow-[0_0_34px_rgba(43,141,255,0.14)]">
               <ShieldCheck className="mb-3" size={22} />
               TCG Magnet purchases collections, graded cards, sealed products, binders, and high-value singles. Submitting details does not guarantee an offer.
             </div>
           </div>
 
-          <div className="rounded-lg border border-white/10 bg-white p-5 text-slate-950 shadow-xl sm:p-7">
+          <div className="rounded-lg border border-[#b9dfff]/20 bg-[#f8fbff] p-5 text-slate-950 shadow-[0_24px_80px_rgba(0,0,0,0.42)] sm:p-7">
             <FormSection title="Contact information">
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field label="Full name" id="full_name" required><input className={inputClass} id="full_name" name="full_name" autoComplete="name" value={form.full_name} onChange={updateText} /></Field>
@@ -412,7 +417,7 @@ export default function TcgMagnetLanding() {
 
             <FormSection title="Photo uploads">
               <input ref={fileInputRef} type="file" className="hidden" multiple accept="image/jpeg,image/png,image/webp,image/heic,image/heif" onChange={(event) => addPhotos(event.target.files)} />
-              <button type="button" onClick={() => fileInputRef.current?.click()} disabled={submitting || photos.length >= TCG_MAX_PHOTO_COUNT} className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md border border-slate-300 bg-slate-950 px-4 font-bold text-white disabled:opacity-60">
+              <button type="button" onClick={() => fileInputRef.current?.click()} disabled={submitting || photos.length >= TCG_MAX_PHOTO_COUNT} className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md border border-[#1f6fbd] bg-[#07111d] px-4 font-bold text-white disabled:opacity-60">
                 <Upload size={18} /> Select images
               </button>
               <p className="mt-2 text-sm text-slate-600">Up to {TCG_MAX_PHOTO_COUNT} images. Each image must be 8 MB or smaller.</p>
@@ -445,7 +450,7 @@ export default function TcgMagnetLanding() {
 
             {error ? <div className="mt-4 rounded-md border border-red-200 bg-red-50 p-3 text-sm font-semibold text-red-700">{error}</div> : null}
 
-            <button type="submit" disabled={submitting} className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-teal-300 px-5 font-black text-slate-950 transition hover:bg-teal-200 disabled:opacity-60">
+            <button type="submit" disabled={submitting} className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-[#2b8dff] px-5 font-black text-white shadow-[0_0_24px_rgba(43,141,255,0.36)] transition hover:bg-[#66b7ff] disabled:opacity-60">
               {submitting ? <Loader2 className="animate-spin" size={18} /> : <Check size={18} />}
               {submitting ? "Submitting..." : "Submit Your Collection"}
             </button>

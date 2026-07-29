@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     siteName: "TCG Magnet",
     locale: "en_CA",
     type: "website",
+    images: ["/tcg-magnet-logo.png"],
   },
 };
 
