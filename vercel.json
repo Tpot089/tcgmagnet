@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "alias": [
+    "tcgmagnet.ca",
+    "www.tcgmagnet.ca"
+  ]
+}
