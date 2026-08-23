@@ -32,7 +32,9 @@ export async function POST(req: Request) {
     }
 
     const admin = getSupabaseAdmin();
+    const leadId = crypto.randomUUID();
     const insertPayload = {
+      id: leadId,
       status: "New",
       full_name: lead.full_name,
       email: lead.email,
@@ -62,17 +64,18 @@ export async function POST(req: Request) {
       first_touch_at: lead.attribution.first_touch_at,
     };
 
-    const { data, error } = await (admin as any)
+    // The public submission role is intentionally allowed to INSERT leads but
+    // not SELECT them. Generate the UUID here so we do not need a RETURNING
+    // query that would require exposing lead rows to anonymous users.
+    const { error } = await (admin as any)
       .from("tcg_collection_leads")
-      .insert(insertPayload as any)
-      .select("id")
-      .single();
-    if (error || !data?.id) {
+      .insert(insertPayload as any);
+
+    if (error) {
       console.error("[tcg_submit] insert_failed", { message: error?.message });
       return jsonError(500, "save_failed", "Could not save the submission");
     }
 
-    const leadId = String(data.id);
     const reference = makeReference(leadId);
     const notifyTo = process.env.TCG_MAGNET_LEAD_NOTIFY_EMAIL || process.env.LEAD_NOTIFY_EMAIL;
     let emailOk = false;
