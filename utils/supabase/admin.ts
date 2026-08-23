@@ -7,6 +7,7 @@ const FALLBACK_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Lb0FYEZfUZ9BogaYekEHZg
 
 export function getSupabaseAdmin() {
   if (cached) return cached;
+
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || FALLBACK_SUPABASE_URL;
   const key =
     process.env.SUPABASE_SERVICE_ROLE_KEY ||
