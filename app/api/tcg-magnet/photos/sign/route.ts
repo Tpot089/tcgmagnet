@@ -39,13 +39,19 @@ export async function POST(req: Request) {
       return jsonError(400, "invalid_path", "Invalid upload path");
     }
 
-    const bucketCheck = await admin.storage.getBucket(TCG_LEAD_BUCKET);
-    if (bucketCheck?.error || !bucketCheck?.data) {
-      return jsonError(500, "bucket_missing", "Storage bucket is not configured");
-    }
+    // Creating a signed upload URL only requires INSERT permission on
+    // storage.objects. Checking bucket metadata first incorrectly requires
+    // additional bucket access and can report a configured private bucket as
+    // missing when the request is using the public/anon key.
+    const signed = await (admin.storage as any)
+      .from(TCG_LEAD_BUCKET)
+      .createSignedUploadUrl(path);
 
-    const signed = await (admin.storage as any).from(TCG_LEAD_BUCKET).createSignedUploadUrl(path);
     if (signed?.error || !signed?.data?.signedUrl) {
+      console.error("[tcg_photo_sign] signing failed", {
+        message: signed?.error?.message || "Missing signed URL",
+        bucket: TCG_LEAD_BUCKET,
+      });
       return jsonError(500, "sign_failed", signed?.error?.message || "Could not prepare upload");
     }
 
