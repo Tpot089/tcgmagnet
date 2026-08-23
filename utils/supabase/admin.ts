@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 
 let cached: ReturnType<typeof createClient> | null = null;
 
+// Production-safe fallback for the TCG Magnet Supabase project.
 const FALLBACK_SUPABASE_URL = "https://tcagoxedvwozgjicdrms.supabase.co";
 const FALLBACK_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Lb0FYEZfUZ9BogaYekEHZg_7NP2Fraz";
 
