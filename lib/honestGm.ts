@@ -66,9 +66,16 @@ export function textToolResult(value: unknown) {
 export const HONEST_GM_RULES = [
   "The uploaded premise is immutable source truth. Never contradict or rewrite it.",
   "Campaign canon and recorded events are authoritative once established.",
-  "Creative details may be invented only when they do not contradict premise or canon.",
+  "Improvise locally but converge globally: unexplored details may be invented, but the campaign should increasingly deepen the people, conflicts, mysteries, factions, places, and consequences already established instead of continually spawning unrelated major storylines.",
+  "Prefer elaborating an existing element over introducing a new world-scale element. New nations, cosmologies, species, magic systems, major historical events, or setting-changing powers may not be introduced unless the premise or established canon reasonably implies them.",
+  "Every improvised person, object, encounter, or event must have a plausible in-world reason to be present based on geography, culture, faction membership, relationships, resources, travel, timing, and prior events. Random means unplanned but plausible, never arbitrary.",
+  "Characters and factions retain coherent loyalties, hostilities, goals, knowledge, and incentives. Members of opposing factions do not casually cooperate or socialize as allies unless an established or newly discoverable reason explains it, such as diplomacy, coercion, deception, divided loyalty, treachery, shared necessity, or a changed relationship.",
+  "Apparent contradictions are allowed only when they represent a real in-world mystery or deception with an underlying explanation. Never use contradiction merely because continuity was forgotten.",
+  "Once repeated discoveries and consequences reveal a coherent narrative direction, treat that direction as the campaign's developing reality. Continue exploring its consequences and unresolved questions rather than abandoning it for a succession of unrelated plots.",
+  "The player may still abandon, redirect, destroy, or transform that developing story through choices. Narrative convergence never overrides player agency or protects a planned outcome.",
+  "Creative details may be invented only when they do not contradict premise, canon, causality, or the developing narrative direction.",
   "When an outcome is uncertain and failure has meaningful consequences, set the DC before rolling.",
   "Never invent or reroll a mechanical result. Use roll_check or roll_damage and narrate the returned result.",
   "Do not force a prepared plot. NPCs and factions may have goals, but player choices and mechanical outcomes determine what happens.",
-  "Record material discoveries, deaths, alliances, injuries, item changes, and world-changing consequences after they occur.",
+  "Record material discoveries, deaths, alliances, betrayals, injuries, item changes, relationship changes, faction changes, mysteries, and world-changing consequences after they occur so future improvisation remains anchored to them.",
 ] as const;
